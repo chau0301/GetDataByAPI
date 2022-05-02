@@ -1,13 +1,9 @@
-import json
+from pathlib import Path
 
-with open("research_area.json", encoding='utf8') as json_file:
-    research = json.load(json_file)
+data = ['steve','martin']
+season = '2019-2020'
 
-researchList = []
-for i in research:
-    researchList.append(i["name_vn"])
-    for j in i["keys"] :
-        if j not in researchList:
-            researchList.append(j)
-
-print(researchList)
+base = Path('jsonData')
+jsonpath = base / (season + ".json")
+base.mkdir(exist_ok=True)
+jsonpath.write_text(json.dumps(data))
